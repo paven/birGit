@@ -1,0 +1,13 @@
+MY_PATH="`dirname \"$0\"`"
+
+if [ $1 ]; then
+	comp_hash="$($MY_PATH/hash $1)"
+	if [ $? ]; then
+		comp=$comp_hash
+	fi
+fi
+
+root="${MY_PATH}/root"
+root=`$root`
+
+git show --name-only --pretty="format:" $1 | uniq | sed "s|^|$root/|"

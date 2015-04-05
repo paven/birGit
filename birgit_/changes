@@ -1,0 +1,13 @@
+comp="HEAD"
+MY_PATH="`dirname \"$0\"`"
+if [ $1 ]; then
+	comp_hash="$($MY_PATH/hash $1)"
+	if [ $? ]; then
+		comp=$comp_hash
+	fi
+fi
+
+root="${MY_PATH}/root"
+root=`$root`
+echo $root
+git diff --name-only $comp | cat | sed "s|^|$root/|"

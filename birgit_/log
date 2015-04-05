@@ -1,0 +1,5 @@
+arg="-n10"
+if [ $1 ]; then
+	arg=${*:1}
+fi
+git log --oneline --color --graph $arg | cat

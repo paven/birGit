@@ -1,0 +1,12 @@
+#!/bin/bash
+MY_PATH="`dirname \"$0\"`"
+if [ $1 ] ;then
+	CMD="$MY_PATH/birgit_/$1"
+	if [ -x $CMD ] ;	then
+		$CMD ${*:2}
+	else
+		git ${*:1}
+	fi
+else
+	find $MY_PATH/birgit_ -maxdepth 1 -perm -111 -type f | xargs basename -a | sort
+fi
