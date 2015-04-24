@@ -2,4 +2,4 @@ arg="-n10"
 if [[ ${*:1} == *"-n"* ]]; then
 	arg=${*:1}
 fi
-git log --oneline --color --graph $arg | cat
+git log --graph --pretty=format:'%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit $arg | cat
