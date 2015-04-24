@@ -1,5 +1,5 @@
 arg="-n10"
-if [ $1 ]; then
+if [[ ${*:1} == *"-n"* ]]; then
 	arg=${*:1}
 fi
 git log --oneline --color --graph $arg | cat
