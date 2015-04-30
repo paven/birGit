@@ -9,5 +9,4 @@ fi
 
 root="${MY_PATH}/root"
 root=`$root`
-echo $root
 git diff --name-only $comp | cat | sed "s|^|$root/|"
