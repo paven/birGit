@@ -1,10 +1,9 @@
 #!/bin/bash
-echo "this function has omega status and will break your gir repo"
+echo "this function has omega status and will break your git repo"
 MY_PATH="`dirname \"$0\"`"
 comp_hash="$($MY_PATH/hash $1)"
 git_root=$($MY_PATH/root)
-#mkdir -p $git_root/.git/rebase-merge
 REBASE_DATA="edit $comp_hash
 $($MY_PATH/helper_/commitIDSince $comp_hash | sed 's/^/pick /g' | tac)"
 echo "$REBASE_DATA"
-GIT_SEQUENCE_EDITOR='echo "$REBASE_DATA" >' git rebase -i $comp_hash^
+GIT_SEQUENCE_EDITOR='echo "$REBASE_DATA" >' git rebase -i $comp_hash
