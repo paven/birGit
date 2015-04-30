@@ -10,4 +10,4 @@ fi
 root="${MY_PATH}/root"
 root=`$root`
 
-git show --name-only --pretty="format:" $1 | uniq | sed "s|^|$root/|"
+git show --name-only --pretty="format:" $1 | uniq | grep . | sed "s|^|$root/|"
