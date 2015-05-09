@@ -1,13 +1,12 @@
 #!/bin/bash
-echo "this function has delta status and will break your git repo"
+echo "this function has beta status and will break your git repo"
 MY_PATH="`dirname \"$0\"`"
 comp_hash="$($MY_PATH/hash $1)"
-stash_name=birgit_amend_$comp_hash
+stash_name="birgit amend $comp_hash $(date --rfc-3339=ns )"
 $MY_PATH/save $stash_name
 git_root=$($MY_PATH/root)
 REBASE_DATA="edit $comp_hash
 $($MY_PATH/helper_/commitIDSince $comp_hash | sed 's/^/pick /g' | tac)"
-echo "$REBASE_DATA"
 GIT_SEQUENCE_EDITOR="echo '$REBASE_DATA' >" git rebase -i $comp_hash^
 git stash pop
 git commit --amend
