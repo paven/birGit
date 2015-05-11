@@ -5,7 +5,8 @@ if [ $1 ] ;then
 	if [ -x $CMD ] ;	then
 		$CMD ${*:2}
 	else
-		git ${*:1}
+		echo Not av valid comand: ${*}
+		birgit
 	fi
 else
 	find $MY_PATH/birgit_ -maxdepth 1 -perm -111 -type f | xargs basename -a | sort
