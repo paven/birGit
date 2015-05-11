@@ -1,3 +1,29 @@
 #!/bin/bash
+#defaults
+b=0
+n=1
+
+for i in "$@"
+do
+case $i in
+    -n*)
+    n="${i#*n}"
+    echo n is $n
+    shift
+    ;;
+    -b*)
+    b="${i#*b}"
+    echo b is $b
+    shift
+    ;;
+    --help)
+    echo $'-n*, -n10 to show 10 tags \n-b* to start show older tags, 0 i latest'
+    exit 0
+    ;;
+esac
+done
+
+b=$((b+n))
+echo $b $n
 git for-each-ref --format='%(*committerdate:raw)%(committerdate:raw) %(refname) %(*objectname) %(objectname)' refs/tags | \
-  sort -n | awk '{ print $3; }' | tail -1
+  sort -n | awk '{ print $3; }' | tail -$b | head -$n
