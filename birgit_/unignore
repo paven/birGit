@@ -1,0 +1,4 @@
+for i in "$@"
+do
+	git update-index --no-assume-unchanged $i
+done
