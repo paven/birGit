@@ -1,0 +1,12 @@
+historyOf=HEAD
+commitToFind=$1
+if [ $2 ]; then
+	historyOf=$1
+	commitToFind=$2
+fi
+
+git log $historyOf --pretty=format:'%H' | grep $commitToFind
+
+
+
+
