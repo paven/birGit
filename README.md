@@ -1,4 +1,4 @@
-# birGit
+# birGit / birgit / Birgit / b
 Git helper
 
 to list commands just write ./birgit
