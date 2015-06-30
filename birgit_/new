@@ -1,0 +1,7 @@
+MY_PATH="`dirname \"$0\"`"
+root="${MY_PATH}/root"
+root=`$root`
+
+pushd $root > /dev/null
+git ls-files --others --exclude-standard --no-empty-directory | cat | sed "s|^|$root/|"
+popd > /dev/null
