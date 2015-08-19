@@ -1,6 +1,8 @@
 # birGit / birgit / Birgit / b
 Git helper
 
+This amazing software will be presented at [FSCONS 2015](https://www.google.se/search?q=fscons&oq=fsc&aqs=chrome.0.69i59j69i57j69i60l3j69i65.3855j0j7&sourceid=chrome&es_sm=0&ie=UTF-8)
+
 to list commands just write ./birgit
 
 to run a command write ./birgit [command]
