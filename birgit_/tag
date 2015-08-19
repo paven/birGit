@@ -8,12 +8,10 @@ do
 case $i in
     -n*)
     n="${i#*n}"
-    echo n is $n
     shift
     ;;
     -b*)
     b="${i#*b}"
-    echo b is $b
     shift
     ;;
     --help)
