@@ -1,3 +1,4 @@
+#!/bin/bash
 historyOf=HEAD
 commitToFind=$1
 if [ $2 ]; then
