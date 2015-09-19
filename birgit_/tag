@@ -22,6 +22,5 @@ esac
 done
 
 b=$((b+n))
-echo $b $n
 git for-each-ref --format='%(*committerdate:raw)%(committerdate:raw) %(refname) %(*objectname) %(objectname)' refs/tags | \
   sort -n | awk '{ print $3; }' | tail -$b | head -$n
