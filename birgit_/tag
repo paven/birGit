@@ -1,7 +1,7 @@
 #!/bin/bash
 #defaults
-b=0
-n=1
+b=0 #Age of tages
+n=1 #Number of items to show
 
 for i in "$@"
 do

@@ -9,5 +9,6 @@ REBASE_DATA="edit $comp_hash
 $($MY_PATH/helper_/commitIDSince $comp_hash | sed 's/^/pick /g' | tac)"
 GIT_SEQUENCE_EDITOR="echo '$REBASE_DATA' >" git rebase -i $comp_hash^
 git stash pop
+git add -p
 git commit --amend
 git rebase --continue
