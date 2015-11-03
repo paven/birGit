@@ -78,7 +78,7 @@ executable files in a folder
 
 cat ~/bin/birGit/birgit
 
-some kode is perfekt
+some code is just perfekt
 
 ---
 
@@ -128,7 +128,7 @@ some commands shape the way you work
 
 # expand birGit - clone
 
-[![Fork](https://raw.github.com/paven/birGit/master/fork.png)](https://github.com/paven/birGit)
+[![Fork](https://raw.github.com/paven/birGit/master/README/fork.png)](https://github.com/paven/birGit)
 cd ~/bin
 rm -r birGit
 git clone git@github.com:paven/birGit.git
@@ -142,3 +142,6 @@ git push
 
 [pull request](https://github.com/paven/birGit/compare)
 
+---
+
+# more code
