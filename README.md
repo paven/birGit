@@ -14,21 +14,21 @@ i also recomend to use alias b
 
 ---
 
-# Presentation
+# meta
 
-* Author: Patrik Gustafsson
+* Author: [Patrik Gustafsson](http://www.purplescout.se/project/patrik-gustafsson/)
 * content: [https://github.com/paven/birGit/](https://github.com/paven/birGit/blob/master/README.md)
-* [as slides](http://www.mumma.nu/birGit	)
+* [as slides](http://www.mumma.nu/birGit)
 
 ---
 
-# birGit / birgit / Brigit / b
+# birGit / birgit / Birgit / b
 
 birGit is an git tool that allows you to easily use the power of the command line in together with git. This softwares main focus is to bring down (multiline) long git commands to simple commands.
 
 ---
 
-# Birgit: 
+# birGit
 
 * is git comands that with out birgit is to complex to use. 
 * has an amazing easy to expand file/folder code structure 
@@ -38,10 +38,9 @@ birGit is an git tool that allows you to easily use the power of the command lin
 
 ---
 
-# Content
+# content
 
 This talk will introduce you to birGit.
-
 
 How to: 
 * use birGit 
