@@ -18,7 +18,7 @@ i also recomend to use alias b
 
 * Author: Patrik Gustafsson
 * content: [https://github.com/paven/birGit/](https://github.com/paven/birGit/blob/master/README.md)
-* [as slides](https://gnab.github.io/remark/remarkise?url=https%3A%2F%2Fraw.githubusercontent.com%2Fpaven%2FbirGit%2Fmaster%2FREADME.md#1)
+* [as slides](http://www.mumma.nu/birGit)
 
 ---
 
@@ -76,7 +76,7 @@ list all commands in birgit
 
 executable files in a folder
 
-cat ~/bin/birGit/birgit
+    cat ~/bin/birGit/birgit
 
 some code is just perfekt
 
@@ -92,7 +92,7 @@ displays the git log in a nice way
 
 # know birgit - log
 
-cat ~/bin/birGit/birgit_/log
+    cat ~/bin/birGit/birgit_/log
 
 ---
 
@@ -129,16 +129,17 @@ some commands shape the way you work
 # expand birGit - clone
 
 [![Fork](https://raw.github.com/paven/birGit/master/README/fork.png)](https://github.com/paven/birGit)
-cd ~/bin
-rm -r birGit
-git clone git@github.com:paven/birGit.git
+
+    cd ~/bin
+    rm -r birGit
+    git clone git@github.com:paven/birGit.git
 
 use you repo
 
 # expand birGit - pullRequest
 
-git commit . "Sane discription of change"
-git push
+    git commit . "Sane discription of change"
+    	git push
 
 [pull request](https://github.com/paven/birGit/compare)
 
