@@ -18,7 +18,7 @@ i also recomend to use alias b
 
 * Author: Patrik Gustafsson
 * content: [https://github.com/paven/birGit/](https://github.com/paven/birGit/blob/master/README.md)
-* [as slides](http://www.mumma.nu/birGit)
+* [as slides](http://www.mumma.nu/birGit	)
 
 ---
 
@@ -135,6 +135,8 @@ some commands shape the way you work
     git clone git@github.com:paven/birGit.git
 
 use you repo
+
+---
 
 # expand birGit - pullRequest
 
