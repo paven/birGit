@@ -14,7 +14,7 @@ i also recomend to use alias b
 
 ---
 
-# meta
+# me
 
 * Author: [Patrik Gustafsson](http://www.purplescout.se/project/patrik-gustafsson/)
 * content: [https://github.com/paven/birGit/](https://github.com/paven/birGit/blob/master/README.md)
@@ -63,21 +63,11 @@ optional:
 
 ---
 
-# use birGit - list
+# use birGit
 
     b
 
 list all commands in birgit
-
----
-
-# know birgit - list
-
-executable files in a folder
-
-    cat ~/bin/birGit/birgit
-
-some code is just perfekt
 
 ---
 
@@ -89,13 +79,7 @@ displays the git log in a nice way
 
 ---
 
-# know birgit - log
-
-    cat ~/bin/birGit/birgit_/log
-
----
-
-# use/know birgit - root
+# use birgit - root
 
     b root
 
@@ -103,25 +87,54 @@ path to git root
 
 ---
 
-# use/know birgit - amend
+# use birgit - rebase
+
+    b rebase
+
+rebase you work on origin/master
+
+---
+
+# use birgit - amend
 
     b amend <commitish>
 
 some code is under development...
+this one jumps back to a previus commit.. and ammends it.
 
-# use/know birgit - rebase
+---
 
-    b rebase
+# know birgit
 
-some commands shape the way you work
+executable files in a folder
+
+    cat ~/bin/birGit/birgit
+
+some code is just perfekt
 
 ---
 
 # know birgit - design choises
 
-1. birigt should return results that are easy to pipe
+1. birigt reports should return results that are easy to pipe
 2. birigt should produce the same result independent of where in the repository you are standing with in you repository.
 3. birgit should be like you firm but kind grandmother
+
+---
+
+# know birgit - log
+
+    cat ~/bin/birGit/birgit_/log
+
+A simple example
+
+---
+
+# know birgit - ammend
+
+    cat ~/bin/birGit/birgit_/ammend
+
+A complex example
 
 ---
 
@@ -140,10 +153,20 @@ use you repo
 # expand birGit - pullRequest
 
     git commit . "Sane discription of change"
-    	git push
+    git push
 
 [pull request](https://github.com/paven/birGit/compare)
 
 ---
 
-# more code
+# Alternatives
+
+* your own scripts..
+* git alias
+* shell alias
+
+---
+
+# more time = more code
+
+---
