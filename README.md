@@ -159,7 +159,7 @@ use you repo
 
 ---
 
-# Alternatives
+# alternatives
 
 * your own scripts..
 * git alias
@@ -170,3 +170,4 @@ use you repo
 # more time = more code
 
 ---
+
