@@ -14,11 +14,16 @@ i also recomend to use alias b
 
 ---
 
-# me
+# about
 
-* Author: [Patrik Gustafsson](http://www.purplescout.se/project/patrik-gustafsson/)
-* content: [https://github.com/paven/birGit/](https://github.com/paven/birGit/blob/master/README.md)
-* [as slides](http://www.mumma.nu/birGit)
+* Author: Patrik Gustafsson
+* Work: [Purple Scout](http://www.purplescout.se/project/patrik-gustafsson/)
+* Linkedin:[https://se.linkedin.com/in/paven](https://se.linkedin.com/in/paven)
+* Homwpage: [mumma](www.mumma.nu)
+
+
+* about: [https://github.com/paven/birGit/](https://github.com/paven/birGit/blob/master/README.md)
+* slides: [http://www.mumma.nu/birGit](http://www.mumma.nu/birGit)
 
 ---
 
