@@ -2,13 +2,17 @@
 set -e
 birgit_="`dirname \"$0\"`"
 target_commit="$($birgit_/hash $1 HEAD)"
-amend_name="birgit amend $target_commit $(date --rfc-3339=ns )"
-git commit -m ""
-NEWCHANGES="$($birgit_/hash HEAD)"
-git stash save $amend_name
-git checkout HEAD^
-REBASE_DATA="pick $target_commit
-squash $NEWCHANGES
-$($birgit_/helper_/commitIDSince $target_commit | sed 's/^/pick /g' | tac)"
-GIT_SEQUENCE_EDITOR="echo '$REBASE_DATA' >" git rebase -i $target_commit^
-git stash pop
+
+#no previus fixups/squash allowed
+$birgit_/commitMessageExists fixup! &>/dev/null && echo "fixups in history not allowed, pleace run git rebase --autosquash" && exit 0 || true
+$birgit_/commitMessageExists squash! &>/dev/null && echo "squash in history not allowed, git rebase --autosquash "  && exit 0 || true
+
+#target and its parent must be in history of HEAD
+$birgit_/contains $target_commit > /dev/null
+$birgit_/contains $target_commit^ > /dev/null
+
+#target should not be in charred repository origin/master
+#TODO tänk på om origin/master inte finns.
+
+git commit -n --fixup=$target_commit
+GIT_SEQUENCE_EDITOR="cat" git rebase $target_commit^ -i --autosquash --autostash

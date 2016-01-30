@@ -1,13 +1,12 @@
 #!/bin/bash
+set -e
+birgit_="`dirname \"$0\"`"
+commitToFind="$($birgit_/hash $1)"
 historyOf=HEAD
-commitToFind=$1
+
 if [ $2 ]; then
-	historyOf=$1
-	commitToFind=$2
+	historyOf=$commitToFind
+	commitToFind="$($birgit_/hash $2)"
 fi
-
-git log $historyOf --pretty=format:'%H' | grep $commitToFind
-
-
-
+git log $historyOf --pretty=format:'%H' | grep "$commitToFind" || ( echo "not found" ; exit 1 )
 
