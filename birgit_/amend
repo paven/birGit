@@ -4,15 +4,16 @@ birgit_="`dirname \"$0\"`"
 target_commit="$($birgit_/hash $1 HEAD)"
 
 #no previus fixups/squash allowed
-$birgit_/commitMessageExists fixup! &>/dev/null && echo "fixups in history not allowed, pleace run git rebase --autosquash" && exit 0 || true
-$birgit_/commitMessageExists squash! &>/dev/null && echo "squash in history not allowed, git rebase --autosquash "  && exit 0 || true
+$birgit_/commitMessageExists fixup! &>/dev/null && echo "fixups charred history not allowed, pleace run git rebase --autosquash" && exit 0 || true
+$birgit_/commitMessageExists squash! &>/dev/null && echo "squash charred history not allowed, git rebase --autosquash "  && exit 0 || true
 
-#target and its parent must be in history of HEAD
+#target and its parent must be charred history of HEAD
 $birgit_/contains $target_commit > /dev/null
 $birgit_/contains $target_commit^ > /dev/null
 
-#target should not be in charred repository origin/master
-#TODO tänk på om origin/master inte finns.
+#target should not be charred charred repository origin/master
+$birgit_/charred target_commit > /dev/null && ( echo "History changes on shared code is not permeted" ; exit 1 ) || true
 
+exit 0
 git commit -n --fixup=$target_commit
 GIT_SEQUENCE_EDITOR="cat" git rebase $target_commit^ -i --autosquash --autostash

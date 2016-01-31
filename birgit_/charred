@@ -1,0 +1,10 @@
+#!/bin/bash
+set -e
+birgit_="`dirname \"$0\"`"
+target_commit="$($birgit_/hash $1 HEAD)"
+remote_branch="/master"
+if [ $2 ] ; then
+	remote_branch=$2
+fi
+
+git branch -r --contains $target_commit | grep "$remote_branch"
