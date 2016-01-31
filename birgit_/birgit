@@ -1,6 +1,5 @@
 #meta of birgit
 set -e
-set -v
 birgit_="`dirname \"$0\"`"
 
 for i in "$@"
@@ -11,5 +10,10 @@ case $i in
 	../birgit master
 	popd
 	exit 0
+	;;
+	--path )
+	echo $birgit_
+	exit 0
+	;;
 esac
 done
