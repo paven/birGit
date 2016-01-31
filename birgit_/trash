@@ -1,8 +1,5 @@
 #!/bin/bash
 trashMethod=$(git config birgit.trash)
-if [ "$trashMethod" = "full" ]; then
-	git add $(birgit root)
-else
 	echo trash does stash only: \"git config birgit.trash full\" to allow the dangerus stuff.
 fi
 	git stash save trash
