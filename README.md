@@ -117,15 +117,15 @@ executable files in a folder
 
     cat ~/bin/birGit/birgit
 
-some code is just perfekt
+some code is just perfect
 
 ---
 
-# know birgit - design choises
+# know birgit - design choices
 
 1. birigt reports should return results that are easy to pipe
-2. birigt should produce the same result independent of where in the repository you are standing with in you repository.
-3. birgit should be like you firm but kind grandmother
+2. birigt should produce the same result independently of where within your repository you are standing.
+3. birgit should be like your firm but kind grandmother
 
 ---
 
@@ -153,7 +153,7 @@ A complex example
     rm -r birGit
     git clone git@github.com:paven/birGit.git
 
-use you repo
+use your repo
 
 ---
 
