@@ -14,6 +14,5 @@ $birgit_/contains $target_commit^ > /dev/null
 #target should not be charred charred repository origin/master
 $birgit_/charred target_commit > /dev/null && ( echo "History changes on shared code is not permeted" ; exit 1 ) || true
 
-exit 0
 git commit -n --fixup=$target_commit
 GIT_SEQUENCE_EDITOR="cat" git rebase $target_commit^ -i --autosquash --autostash
