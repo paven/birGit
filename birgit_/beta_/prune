@@ -1,0 +1,23 @@
+#/bin/bash
+set -e
+birgit_="`dirname \"$0\"`"
+
+if [ $1 ]; then
+	branches=$@
+else
+	branches=$(git branch -r --list --no-merged origin/master |
+	grep "origin/" | grep -v "/origin/")
+fi
+
+
+for branch in $branches; do
+	if git rebase origin/HEAD $branch &> /dev/null ; then
+		head=$($Mbirgit_/hash HEAD)
+		master=$($birgit_/hash origin/master)
+		if [ "$head" == "$master" ]; then
+			echo $branch
+		fi
+	else
+		git rebase --abort &> /dev/null
+	fi
+done
