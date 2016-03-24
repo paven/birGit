@@ -31,13 +31,13 @@ i also recomend to use alias b
 
 # birGit / birgit / Birgit / b
 
-birGit is an git tool that allows you to easily use the power of the command line in together with git. This softwares main focus is to bring down (multiline) long git commands to simple commands.
+birGit is a git tool that allows you to easily use the power of the command line together with git. This software's main focus is to reduce (multiline) long git commands to simple commands.
 
 ---
 
 # birGit
 
-* is git comands that with out birgit is to complex to use. 
+* provides git commands that without birgit are too complex to use.
 * has an amazing easy to expand file/folder code structure 
 * returns results with atomic rows. 
 * is written in bash. 
@@ -98,7 +98,7 @@ path to git root
 
     b rebase
 
-rebase you work on origin/master
+rebase your work on origin/master
 
 ---
 
@@ -107,7 +107,7 @@ rebase you work on origin/master
     b amend <commitish>
 
 some code is under development...
-this one jumps back to a previus commit.. and ammends it.
+this one jumps back to a previous commit, and amends it.
 
 ---
 
@@ -123,8 +123,8 @@ some code is just perfect
 
 # know birgit - design choices
 
-1. birigt reports should return results that are easy to pipe
-2. birigt should produce the same result independently of where within your repository you are standing.
+1. birgit reports should return results that are easy to pipe
+2. birgit should produce the same result independently of where within your repository you are standing
 3. birgit should be like your firm but kind grandmother
 
 ---
@@ -139,7 +139,7 @@ A simple example
 
 # know birgit - ammend
 
-    cat ~/bin/birGit/birgit_/ammend
+    cat ~/bin/birGit/birgit_/amend
 
 A complex example
 
@@ -159,7 +159,7 @@ use your repo
 
 # expand birGit - pullRequest
 
-    git commit . "Sane discription of change"
+    git commit . "Sane description of change"
     git push
 
 [pull request](https://github.com/paven/birGit/compare)
