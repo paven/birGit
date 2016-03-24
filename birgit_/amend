@@ -3,16 +3,16 @@ set -e
 birgit_="`dirname \"$0\"`"
 target_commit="$($birgit_/hash $1 HEAD)"
 
-#no previus fixups/squash allowed
-$birgit_/commitMessageExists fixup! &>/dev/null && echo "fixups charred history not allowed, pleace run git rebase --autosquash" && exit 0 || true
-$birgit_/commitMessageExists squash! &>/dev/null && echo "squash charred history not allowed, git rebase --autosquash "  && exit 0 || true
+#no previous fixups/squashes allowed
+$birgit_/commitMessageExists fixup! &>/dev/null && echo "Will not continue because of existing fixup! found in shared history. Please run git rebase --autosquash " && exit 0 || true
+$birgit_/commitMessageExists squash! &>/dev/null && echo "Will not continue because of existing squash! found in shared history.  Please run git rebase --autosquash "  && exit 0 || true
 
-#target and its parent must be charred history of HEAD
+#target and its parent must be shared history of HEAD
 $birgit_/contains $target_commit > /dev/null
 $birgit_/contains $target_commit^ > /dev/null
 
-#target should not be charred charred repository origin/master
-$birgit_/charred target_commit > /dev/null && ( echo "History changes on shared code is not permeted" ; exit 1 ) || true
+#target should not be shared repository origin/master
+$birgit_/shared target_commit > /dev/null && ( echo "Changing history on shared history is not permitted" ; exit 1 ) || true
 
 exit 0
 git commit -n --fixup=$target_commit
