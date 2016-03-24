@@ -1,11 +1,11 @@
 #!/bin/bash
 MY_PATH="`dirname \"$0\"`"
-if [ $1 ] ;then
+if [ $1 ] ; then
 	CMD="$MY_PATH/birgit_/$1"
-	if [ -x $CMD ] ;	then
+	if [ -x $CMD ] ; then
 		$CMD ${*:2}
 	else
-		echo Not av valid comand: ${*}
+		echo "Not a valid command: ${*}"
 		birgit
 	fi
 else
