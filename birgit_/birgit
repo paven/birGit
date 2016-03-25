@@ -4,16 +4,17 @@ birgit_="`dirname \"$0\"`"
 
 for i in "$@"
 do
-case $i in
-    --update )
-	pushd $birgit_
-	../birgit master
-	popd
-	exit 0
-	;;
-	--path )
-	echo $birgit_
-	exit 0
-	;;
-esac
+	case $i in
+		--update )
+			pushd $birgit_
+			../birgit master
+			popd
+			exit 0
+			;;
+
+		--path )
+			echo $birgit_
+			exit 0
+			;;
+	esac
 done
