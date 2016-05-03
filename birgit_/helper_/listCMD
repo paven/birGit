@@ -1,0 +1,3 @@
+#!/bin/bash
+MY_PATH="`dirname \"$0\"`"
+find $MY_PATH/.. -maxdepth 1 -perm -111 -type f | xargs basename -a | sort

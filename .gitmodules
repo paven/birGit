@@ -1,0 +1,6 @@
+[submodule "plugin/git-amend"]
+	path = plugin/git-amend
+	url = https://github.com/paven/git-amend.git
+[submodule "plugin/git-amend-old"]
+	path = plugin/git-amend-old
+	url = https://github.com/paven/git-amend-old.git

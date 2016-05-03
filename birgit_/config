@@ -1,0 +1,53 @@
+#!/bin/bash
+
+MY_PATH="`dirname \"$0\"`"
+BIRGIT_PATH="`dirname \"$MY_PATH\"`"
+birgitConfigFile="-f $MY_PATH/../.config"
+
+gitConfig=true
+birgitConfig=false
+birigtConfigOnFail=false
+
+cleanOptions=$(echo $@ | sed 's/\--birgit\>//g')
+
+for i in "$@"
+do
+case $i in
+    --list )
+    gitConfig=true
+    birgitConfig=true
+    birigtConfigOnFail=false
+    ;;
+    --get )
+    gitConfig=true
+    birgitConfig=false
+    birigtConfigOnFail=true
+    ;;
+    --global | --local | --system )
+    gitConfig=true
+    birgitConfig=false
+    birigtConfigOnFail=false
+    ;;
+    --birgit )
+    gitConfig=false
+    birgitConfig=true
+    birigtConfigOnFail=false
+    ;;
+esac
+done
+		if [ $gitConfig == true ] ; then
+			git config $cleanOptions
+		fi
+		gitExit=$?
+
+        if [[ $birgitConfig || ( [$gitExit -ne 0  && $birigtConfigOnFail ) ]] ;then
+			git config $birgitConfigFile $cleanOptions
+        fi
+
+if [ ! $1 ] ;then
+	echo "birGit has its configuration at birgits root: " $BIRGIT_PATH.config
+	echo
+	echo birGit configurations can also be overriden in normal git configurations.
+	echo
+	echo git configurations can not be places in the birGit config file.
+fi

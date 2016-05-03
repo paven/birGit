@@ -1,0 +1,51 @@
+#!/bin/bash
+MY_PATH="`dirname \"$0\"`"
+
+for i in "$@"
+do
+case $i in
+    --help | help)
+        echo '--suported --unsported -n'
+        exit 0;
+    ;;
+    -n*)
+        n="${i#*n}"
+    shift
+    ;;
+    suported)
+        suported=true; #default false
+    ;;
+    unsported)
+        for cmd in $($MY_PATH/helper_/listCMD)
+        do
+            if grep -q "--help)" $cmd==$suported ; then
+                echo HELP $cmd
+			else
+				echo $cmd
+            fi
+
+        done
+    ;;
+esac
+done
+
+
+
+if [ $1 ] ;then
+	CMD="$MY_PATH/$1"
+	if [ -x $CMD ] ;	then
+		echo GREP "#HELP" $($CMD ${*:2})
+	else
+		echo Not av valid comand: ${*}
+		birgit
+	fi
+else
+	for cmd in $($MY_PATH/helper_/listCMD)
+        do
+        if grep -q '"--help)"' $cmd; then
+                echo $cmd $($MY_PATH/$cmd --help)
+        else
+        		echo NOHELP $cmd
+        fi
+    done
+fi

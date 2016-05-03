@@ -1,0 +1,57 @@
+#!/bin/bash 
+
+opt=$0
+while :; do
+    case $1 in
+		--*)
+			#long
+		shift
+		;;
+		-*)
+			#short
+		shift
+		;;
+		*)
+			#arg
+		shift
+		;;
+	esac
+
+optspec="n:-:"
+while getopts "$optspec" option &> /dev/null; do
+		echo "$option $OPTARG"
+
+	if [ $option == "-" ] || [ $option == ":" ] || [ $option == "?" ]
+	then
+		echo $option
+		option=$OPTARG
+		echo $option
+		OPTARG=""
+	fi
+
+    case "${option}" in
+		n)
+			n="-n ${OPTARG}"
+			echo n ${OPTARG}
+		;;
+		--no-graph)
+			graph=""
+		;;
+        h|help)
+			echo $'git log with defaults'
+			exit 0
+        ;;
+        \?)
+			forward="$forward ${OPTARG}"
+			echo $forward .. $OPTARG ..
+		;;
+        *)
+            forward="$forward $option"
+            echo $forward
+		;;
+    esac
+done
+
+git log $graph  --pretty=format:'%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit $n  | cat
+
+echo $forward
