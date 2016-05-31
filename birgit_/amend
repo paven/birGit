@@ -1,11 +1,12 @@
 #!/bin/bash
 set -e
+set -v
 birgit_="`dirname \"$0\"`"
 target_commit="$($birgit_/hash $1 HEAD)"
 
 #no previous fixups/squashes allowed
-$birgit_/commitMessageExists fixup! &>/dev/null && echo "Will not continue because of existing fixup! found in shared history. Please run git rebase --autosquash " && exit 0 || true
-$birgit_/commitMessageExists squash! &>/dev/null && echo "Will not continue because of existing squash! found in shared history.  Please run git rebase --autosquash "  && exit 0 || true
+$birgit_/commitMessageExists $target_commit fixup! &>/dev/null && echo "Will not continue because of existing fixup! found in shared history. Please run git rebase --autosquash " && exit 0 || true
+$birgit_/commitMessageExists $target_commit squash! &>/dev/null && echo "Will not continue because of existing squash! found in shared history.  Please run git rebase --autosquash "  && exit 0 || true
 
 #target and its parent must be shared history of HEAD
 $birgit_/contains $target_commit > /dev/null

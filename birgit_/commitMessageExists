@@ -1,3 +1,6 @@
 #!/bin/bash
 set -e
-git shortlog | grep -e "^      $1"
+birgit_="`dirname \"$0\"`"
+target_commit="$($birgit_/hash $1 HEAD)"
+
+git shortlog $target_commit^.. | grep -e "^      $2"
