@@ -16,4 +16,4 @@ $birgit_/contains $target_commit^ > /dev/null
 $birgit_/shared target_commit > /dev/null && ( echo "Changing history on shared history is not permitted" ; exit 1 ) || true
 
 git commit -n --fixup=$target_commit
-GIT_SEQUENCE_EDITOR="cat" git rebase $target_commit^ -i --autosquash --autostash
+GIT_SEQUENCE_EDITOR="cat" git rebase $target_commit^ -i --autosquash --autostash --preserve-merges
