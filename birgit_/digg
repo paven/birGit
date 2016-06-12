@@ -1,0 +1,5 @@
+for stash in `git stash list --format="%gd"`; do
+	if `b changesIn $stash | grep -q "$1"` ; then
+		echo $stash
+	fi
+done
