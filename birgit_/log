@@ -1,6 +1,34 @@
 #!/bin/bash
-arg="-n10"
+birgit_="`dirname \"$0\"`"
+
+
+n=10 #Number of items to show
+
+for i in "$@"
+do
+	case $i in
+		-n*)
+			n="${i#*n}"
+			continue
+			;;
+		-b*)
+			b="${i#*b}"
+			continue
+			;;
+		--help)
+			echo 'Display log in prettyr format. Args: -n '
+			exit 0
+			;;
+	esac
+	if ($hash); then
+		hash=`$birgit_/hash $i`
+		if ($hash); then
+			shift;
+		fi
+	fi
+done
+
 if [[ ${*:1} == *"-n"* ]]; then
 	arg=${*:1}
 fi
-git log --graph --pretty=format:'%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit $arg | cat
+git log --graph --pretty=format:'%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -n$n $hash | cat
