@@ -3,3 +3,9 @@ for stash in `git stash list --format="%gd"`; do
 		echo $stash
 	fi
 done
+
+for commit in `git rev-list origin/master...`; do
+    if `b changesIn $commit | grep -q "$1"`; then
+		echo $commit
+	fi
+done
