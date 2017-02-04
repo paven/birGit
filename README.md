@@ -60,13 +60,7 @@ How to:
 
 # use birGit - installation
 
-    cd ~/bin
-    git clone https://github.com/paven/birGit.git
-    echo "export PATH=$PATH:~/bin/birGit/" >> ~/.profile
-
-optional:
-
-    echo "alias b=birgit" >> ~/.profile
+    git clone https://github.com/paven/birGit.git ~/opt_/birGit && echo 'export PATH=$PATH:~/opt_/birGit/' >> ~/.profile && echo "alias b=birgit" >> ~/.profile
 
 ---
 
