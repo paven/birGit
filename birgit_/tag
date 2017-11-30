@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #defaults
 b=0 #Age of tages
 n=1 #Number of items to show

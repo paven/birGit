@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 MY_PATH="`dirname \"$0\"`"
 if [ $1 ] ; then
 	CMD="$MY_PATH/birgit_/$1"

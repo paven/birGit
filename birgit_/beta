@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 birgit_=$(dirname $0)
 if [ $1 ] ;then
 	CMD="$birgit_/birgit_/$1"

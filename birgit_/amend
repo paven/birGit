@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -e
 set -v
 birgit_="`dirname \"$0\"`"

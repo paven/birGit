@@ -1,2 +1,2 @@
 git fetch origin master
-git rebase origin/master
+git rebase origin/master --autostash

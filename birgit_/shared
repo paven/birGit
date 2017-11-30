@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -e
 birgit_="`dirname \"$0\"`"
 target_commit="$($birgit_/hash $1 HEAD)"

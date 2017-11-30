@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 comp="HEAD"
 MY_PATH="`dirname \"$0\"`"
 if [ $1 ]; then

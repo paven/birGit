@@ -1,1 +1,1 @@
-git rev-parse --verify $1
+git rev-parse --verify $1 2>/dev/null

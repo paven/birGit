@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 trashMethod=$(git config birgit.trash)
 	echo trash does stash only: \"git config birgit.trash full\" to allow the dangerus stuff.
 fi
