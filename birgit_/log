@@ -14,7 +14,7 @@ for i in "$@"
 do
 	case $i in
 		--help)
-			echo 'Display log in prettyr format, should honor standard git log arguments. with some defaults'
+			echo 'Display log in pretty format, should honor standard git log arguments. with some defaults'
 			exit 0
 			;;
 		-n*)
