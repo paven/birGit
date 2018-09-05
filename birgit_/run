@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+commit="HEAD"
+hash=$(b hash $commit)
+
+MY_PATH="`dirname \"$0\"`"
+
+CMD=$*
+
+tmpdir=$(mktemp -d -t birigt-"$hash"-XXX)
+git worktree add $tmpdir &>/dev/null
+pushd $tmpdir &>/dev/null
+    sh -c "$CMD"
+popd &>/dev/null
+git worktree remove $tmpdir &>/dev/null
+rm -rf $tmpdir
