@@ -1,2 +1,2 @@
-#!/bin/bash
-git rev-parse --symbolic-full-name --abbrev-ref @{u} 2>/dev/null
+#!/usr/bin/env bash
+git rev-parse --symbolic-full-name --abbrev-ref $1@{u} 2>/dev/null

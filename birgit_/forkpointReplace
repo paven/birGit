@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+birgit_="`dirname \"$0\"`"
+
+git40HashRegexp="[0-9a-f]{40}"
+forkpointLookaheadRegexp="" ##//""
+forkpointHashRegexp="$forkpointLookaheadRegexp$git40HashRegexp"
+
+while IFS='$\n' read -r line; do
+    forkpointHash=`echo "$line" | grep -o -P '(?<=forkpoint )[0-9a-f]{40}'` 
+    [[ $forkpointHash != "" ]] && forkpointString=`$birgit_/forkpointString $forkpointHash`
+
+    replace="forkpoint $forkpointHash"
+    [[ $forkpointHash != "" ]] && echo "${line//$replace/$forkpointString}"
+    [[ $forkpointHash == "" ]] && echo "$line"
+done

@@ -8,3 +8,5 @@ if [ $2 ] ; then
 fi
 
 git branch -r --contains $target_commit | grep "$remote_branch"
+
+curl --request POST --url 'https://seal-software.atlassian.net/rest/api/3/issue'  --user 'email@example.com:zCCMHuU2mQmfj8KcvUphFE9A'  --header 'Accept: application/json' --header 'Content-Type: application/json' --data '{ "update": {}, "fields": { "summary": "Main order flow broken", "issuetype": { "id": "1" }, "project": { "key": "ws" }, "assignee":{"name":"Patrik.gustafsson"}, "priority":{"id":"10002"}, "summary":"WhiteSource Policy: High Vulnerability to Jira, for the following library: jetty-http-9.0.2.v20130417.jar", "description":"The library was matched to a Product level security vulnerability severity policy, applied on Organization: Seal Software, Product: Seal-PROD [master], Project: seal-watchtower-web…” } }'

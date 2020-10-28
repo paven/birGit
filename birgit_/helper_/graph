@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+birgit_="`dirname \"$0\"`"
+
+gitConf="-c color.ui=always"
+
+git $gitConf  --no-pager log --graph --pretty=format:'%H' $@

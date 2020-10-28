@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+birgit_="`dirname \"$0\"`"
+
+hash=`$birgit_/hash HEAD`
+hash1=`$birgit_/hash $1`
+if [ $hash1 ] ; then 
+    hash=$hash1
+fi
+
+forkpoints=$($birgit_/forkpoints | sort | uniq)
+
+set -- $forkpoints
+
+while [ $1 ] 
+do
+    if [ $1 == $hash ]; then
+        [[ $line ]] && line+=", "
+        line+=$2
+    fi
+    shift
+    shift
+done
+
+[[ $line ]] && echo { $line }
+
+exit 0
+

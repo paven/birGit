@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
 commit="HEAD"
-hash=$(b hash $commit)
-
 MY_PATH="`dirname \"$0\"`"
+
+
+hash=$($MY_PATH/hash $commit)
+
 
 CMD=$*
 

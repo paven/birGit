@@ -24,4 +24,4 @@ do
 	args="$args $i"
 done
 
-git $gitConf $no_pager log $args $graph $decorate $topo_order $n --pretty=format:'%h%Creset -%C(yellow)%dforkpoint %H %Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' | $birgit_/forkpointReplace
+git $gitConf $no_pager log $args $graph $decorate $topo_order $n --pretty=format:'%h%Creset -%C(yellow)%d %Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'

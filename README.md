@@ -15,6 +15,9 @@ add birgit to your path in your .bashrc or .zhrc or where you want.
 i also recomend to use alias b
 
 ---
+Mac user would have to install propper gnu grep.
+brew install grep --with-default-names 
+---
 
 # about
 
@@ -60,7 +63,13 @@ How to:
 
 # use birGit - installation
 
-    git clone https://github.com/paven/birGit.git ~/opt/birGit && echo 'export PATH=$PATH:~/opt/birGit/' >> ~/.profile && echo "alias b=birgit" >> ~/.profile
+    cd ~/bin
+    git clone https://github.com/paven/birGit.git
+    echo "export PATH=$PATH:~/bin/birGit/" >> ~/.profile
+
+optional:
+
+    echo "alias b=birgit" >> ~/.profile
 
 ---
 

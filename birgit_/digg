@@ -1,11 +1,16 @@
+MY_PATH="`dirname \"$0\"`"
+
+changesIn="${MY_PATH}/changesIn"
+
 for stash in `git stash list --format="%gd"`; do
-	if `b changesIn $stash | grep -q "$1"` ; then
+comp_hash="$($MY_PATH/hash $1)"
+	if `$changesIn $stash | grep -q "$1"` ; then
 		echo $stash
 	fi
 done
 
-for commit in `git rev-list origin/master...`; do
-    if `b changesIn $commit | grep -q "$1"`; then
+for commit in `git rev-list origin/master~30...`; do
+    if `$changesIn $commit | grep -q "$1"`; then
 		echo $commit
 	fi
 done

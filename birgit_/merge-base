@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+birgit_=$(dirname $0)
+
+
+refbase=birgit/mergebase
+
+commits=(`$birgit_/hash $1` `$birgit_/hash $2`)
+##commits=( $1 $2 )
+IFS=$'\n' commits=($(sort <<<"${commits[*]}"))
+unset IFS
+
+
+ref=$refbase/${commits[0]}/${commits[1]}
+[[ ${commits[0]} == ${commits[1]} ]] && exit 0 ## commit and branch should not have the same head
+
+mergebase=`git show-ref -s $ref`
+
+if [[ -z $mergebase ]] ; then
+    mergebase=`git merge-base ${commits[0]} ${commits[1]} 2>/dev/null` && ## Should have a merge-base
+    git update-ref $ref $mergebase ## save to birgit refs to speedup in future
+fi
+
+[[ ${commits[0]} != $mergebase ]] && ## merge-base should not be same as branch
+[[ ${commits[1]} != $mergebase ]] && ## merge-base should not be same as branch
+echo $mergebase ## echo merge base

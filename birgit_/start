@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+birgit_="`dirname \"$0\"`"
+base="origin/master"
+WIP
+ 
+for i in "$@"
+do
+	if(nextIsBase) {
+		base = $i
+		nextIsBase=false;
+		continue
+	}
+	case $i in
+		-b) --base)
+			nextIsBase=true
+			continue
+			;;
+		-t) --target)
+			nextis
+		--help)
+			echo 'Start working from master'
+			exit 0
+			;;
+	esac
+
+done

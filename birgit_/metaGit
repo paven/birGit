@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+set -e
+set -v
+
+birgit_=$(dirname $0)
+newCount=$($birgit_/new 2>/dev/null| wc -l)
+changesCount=$($birgit_/changes 2>/dev/null | wc -l)
+totalCount=$((newCount + changesCount))
+
+if [ $1 ];then
+	if [ "$totalCount" -gt "0" ];then
+		$birgit_/metaGit
+		#do a meta git without command
+	fi
+fi
+
+${*:1}
+
+repDir=$($birgit_/root)/.git
+pushd $repDir
+if [ $($birgit_ root) -ne $repDir ];then
+	git init
+fi
+  
+git add .
+git commit -m "CMD: $1"
+
+popd
+
+exit 0
+## + $birgit_\new | wc -l )
+##[[ | wc -l == 0 )]]
+
+
+CMD="$birgit_/birgit_/$1"
+
+function evil_git_dirty {
+ ## [[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]] && echo "*"
+}

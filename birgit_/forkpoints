@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+birgit_=$(dirname $0)
+commit="HEAD"
+
+importantBranches=`git rev-parse --abbrev-ref --branches | sort | uniq`
+# tracks=`$birgit_/tracks`
+# [[ $tracks ]] && importantBranches+=" $tracks"
+if [ $1 ]; then
+	commit="$($birgit_/hash $1)"
+fi
+importantBranches+=" origin/master"
+
+if [ $2 ]; then
+	importantBranches=${*:2}
+fi
+
+#add tracking branches of local branches
+##for i in $importantBranches
+##do   
+#    tracks=`$birgit_/tracks $i`
+#   [[ $tracks ]] && 
+#   
+#done
+
+
+for i in $importantBranches
+do    
+   mergebase=`$birgit_/merge-base $commit $i 2>/dev/null`  && ## should have a merge base
+   echo $mergebase $i ## echo merge base followed by branch  
+done
+
+
+
+

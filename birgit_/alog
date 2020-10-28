@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+birgit_=$(dirname $0)
+
+graph=$($birgit_/helper_/graph $@)
+#echo $graph
+#exit 0
+for line in $graph
+do
+    lineHash=echo $line|rev|cut -f1 -d' '|rev | $birgit_/hash # egrep -m 0 -o -e  '\b([0-9a-f]{5,40})\b'
+    lineGraph=echo $line | sed "s/'\w*$'//"
+    lineforkpointString=$birgit_/forkpointString $lineHash
+    echo $lineGraph $lineHash $lineForkpointString
+done
+
