@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# bsafe — birgit entrypoint restricted to read-only, non-destructive commands
+MY_PATH="$(dirname "$0")"
+
+SAFE_COMMANDS=(
+    branch
+    branches
+    changes
+    changesIn
+    commitMessageExists
+    contains
+    digg
+    hash
+    ignored
+    log
+    new
+    root
+    shared
+    tag
+    tracks
+)
+
+if [ -z "$1" ]; then
+    printf '%s\n' "${SAFE_COMMANDS[@]}" | sort
+    exit 0
+fi
+
+for cmd in "${SAFE_COMMANDS[@]}"; do
+    if [ "$1" = "$cmd" ]; then
+        exec "$MY_PATH/birgit_/$1" "${@:2}"
+    fi
+done
+
+echo "bsafe: '$1' is not permitted. Safe commands:" >&2
+printf '  %s\n' "${SAFE_COMMANDS[@]}" | sort >&2
+exit 1
