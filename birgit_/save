@@ -1,1 +1,3 @@
-git stash save $1
+#!/usr/bin/env bash
+set -e
+git stash push -m "$1"
