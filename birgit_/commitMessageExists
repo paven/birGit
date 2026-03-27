@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 set -e
-birgit_="`dirname \"$0\"`"
-target_commit="$($birgit_/hash $1 HEAD)"
-
-git shortlog $target_commit^.. | grep -e "^      $2"
+birgit_="$(dirname "$0")"
+since_commit="$("$birgit_/hash" "${1:-HEAD}")"
+git log --pretty=format:'%s' "${since_commit}^.." | grep -qF "$2"
