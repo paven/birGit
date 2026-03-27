@@ -1,11 +1,15 @@
-for stash in `git stash list --format="%gd"`; do
-	if `b changesIn $stash | grep -q "$1"` ; then
-		echo $stash
-	fi
+#!/usr/bin/env bash
+set -e
+birgit_="$(dirname "$0")"
+
+for stash in $(git stash list --format="%gd"); do
+    if git stash show --name-only "$stash" 2>/dev/null | grep -qF "$1"; then
+        echo "$stash"
+    fi
 done
 
-for commit in `git rev-list origin/master...`; do
-    if `b changesIn $commit | grep -q "$1"`; then
-		echo $commit
-	fi
+for commit in $(git rev-list origin/master...); do
+    if "$birgit_/changesIn" "$commit" | grep -qF "$1"; then
+        echo "$commit"
+    fi
 done
