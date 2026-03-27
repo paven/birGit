@@ -1,2 +1,5 @@
 #!/usr/bin/env bash
-for branch in `git branch -r | grep -v HEAD`;do echo -e `git show --format="%ci %cr" $branch | head -n 1` \\t$branch; done | sort -r
+set -e
+git for-each-ref --sort=-committerdate refs/remotes \
+    --format='%(committerdate:iso) %(committerdate:relative)%09%(refname:short)' \
+    | grep -v '/HEAD$' || true
