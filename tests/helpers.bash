@@ -7,6 +7,7 @@ BIRGIT_="$(cd "$(dirname "$BATS_TEST_FILENAME")/.." && pwd)/birgit_"
 # Commits one file on branch 'master' so HEAD is valid.
 setup_repo() {
     TEST_REPO="$(mktemp -d)"
+    TEST_REPO="$(realpath "$TEST_REPO")"
     cd "$TEST_REPO"
     git init -b master
     git config user.email "test@birgit"
