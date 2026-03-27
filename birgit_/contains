@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 set -e
-birgit_="`dirname \"$0\"`"
-commitToFind="$($birgit_/hash $1)"
-historyOf=HEAD
+birgit_="$(dirname "$0")"
+commit="$("$birgit_/hash" "$1")"
+history="${2:-HEAD}"
+history="$("$birgit_/hash" "$history")"
 
-if [ $2 ]; then
-	historyOf=$commitToFind
-	commitToFind="$($birgit_/hash $2)"
+if ! git merge-base --is-ancestor "$commit" "$history"; then
+    echo "not found" >&2
+    exit 1
 fi
-git log $historyOf --pretty=format:'%H' | grep "$commitToFind" || ( echo "not found" ; exit 1 )
-
+echo "$commit"
