@@ -1,1 +1,3 @@
-git ls-files -v | grep "^[[:lower:]]" 
+#!/usr/bin/env bash
+set -e
+git ls-files -v | grep "^[[:lower:]]" || true
