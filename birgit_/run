@@ -1,16 +1,14 @@
 #!/usr/bin/env bash
+set -e
+birgit_="$(dirname "$0")"
+hash="$("$birgit_/hash" HEAD)"
+tmpdir="$(mktemp -d -t "birgit-${hash}-XXX")"
 
-commit="HEAD"
-hash=$(b hash $commit)
+cleanup() {
+    git worktree remove --force "$tmpdir" 2>/dev/null || true
+    rm -rf "$tmpdir"
+}
+trap cleanup EXIT
 
-MY_PATH="`dirname \"$0\"`"
-
-CMD=$*
-
-tmpdir=$(mktemp -d -t birigt-"$hash"-XXX)
-git worktree add $tmpdir &>/dev/null
-pushd $tmpdir &>/dev/null
-    sh -c "$CMD"
-popd &>/dev/null
-git worktree remove $tmpdir &>/dev/null
-rm -rf $tmpdir
+git worktree add "$tmpdir" &>/dev/null
+(cd "$tmpdir" && "$@")
