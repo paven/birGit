@@ -1,26 +1,26 @@
 #!/usr/bin/env bash
-#defaults
-b=0 #Age of tages
-n=1 #Number of items to show
+set -e
 
-for i in "$@"
-do
-	case $i in
-		-n*)
-			n="${i#*n}"
-			shift
-			;;
-		-b*)
-			b="${i#*b}"
-			shift
-			;;
-		--help)
-			echo $'-n*, -n10 to show 10 tags \n-b* to start show older tags, 0 i latest'
-			exit 0
-			;;
-	esac
+offset=0  # how many tags back to start (0 = latest)
+count=1   # number of tags to show
+
+for i in "$@"; do
+    case $i in
+        -n*)  count="${i#*n}"  ;;
+        -b*)  offset="${i#*b}" ;;
+        --help)
+            echo "-n<N>  number of tags to show (default: 1)"
+            echo "-b<N>  offset from latest tag, 0 is newest (default: 0)"
+            exit 0
+            ;;
+    esac
 done
 
-b=$((b+n))
-git for-each-ref --format='%(*committerdate:raw)%(committerdate:raw) %(refname) %(*objectname) %(objectname)' refs/tags | \
-	sort -n | awk '{ print $3; }' | tail -$b | head -$n
+tail_count=$(( offset + count ))
+git for-each-ref \
+    --format='%(*committerdate:raw)%(committerdate:raw) %(refname) %(*objectname) %(objectname)' \
+    refs/tags \
+    | sort -n \
+    | awk '{ print $3 }' \
+    | tail "-${tail_count}" \
+    | head "-${count}"
