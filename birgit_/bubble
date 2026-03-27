@@ -1,18 +1,26 @@
-#/bin/bash
+#!/usr/bin/env bash
 set -e
-birgit_="`dirname \"$0\"`"
+birgit_="$(dirname "$0")"
+message=""
 
-while :; do
+while [ "$#" -gt 0 ]; do
     case $1 in
-		-m)
-			message = $2
-		shift 2
-		;;
-	esac
+        -m)
+            message="$2"
+            shift 2
+            ;;
+        *)
+            echo "bubble: unknown option: $1" >&2
+            exit 1
+            ;;
+    esac
 done
 
-$birgit_/rebase
+"$birgit_/rebase"
 
-head=$birgit_/head HEAD
-git checkout origin/master
-git merge --no-ff -m "$message" $head
+feature_head="$("$birgit_/hash" HEAD)"
+default_branch=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's|refs/remotes/origin/||')
+default_branch="${default_branch:-master}"
+
+git checkout "$default_branch"
+git merge --no-ff -m "$message" "$feature_head"
