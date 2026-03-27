@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
-birgit_=$(dirname $0)
-if [ $1 ] ;then
-	CMD="$birgit_/birgit_/$1"
-	if [ -x $CMD ] ;	then
-		$CMD ${*:2}
-	else
-		echo Not av valid comand: ${*}
-		birgit
-	fi
+set -e
+birgit_="$(dirname "$0")"
+
+if [ -n "$1" ]; then
+    cmd="$birgit_/beta_/$1"
+    if [ -x "$cmd" ]; then
+        "$cmd" "${@:2}"
+    else
+        echo "beta: not a valid command: $1" >&2
+        "$birgit_/beta"
+        exit 1
+    fi
 else
-	find $birgit_/beta_ -maxdepth 1 -perm -111 -type f | xargs basename -a | sort
+    find "$birgit_/beta_" -maxdepth 1 -perm -111 -type f -exec basename {} \; | sort
 fi
