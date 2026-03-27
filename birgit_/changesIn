@@ -1,13 +1,6 @@
-MY_PATH="`dirname \"$0\"`"
-
-if [ $1 ]; then
-	comp_hash="$($MY_PATH/hash $1)"
-	if [ $? ]; then
-		comp=$comp_hash
-	fi
-fi
-
-root="${MY_PATH}/root"
-root=`$root`
-
-git show --name-only --pretty="format:" $1 | uniq | grep . | sed "s|^|$root/|"
+#!/usr/bin/env bash
+set -e
+birgit_="$(dirname "$0")"
+repo_root="$("$birgit_/root")"
+commit="$("$birgit_/hash" "$1")"
+git show --name-only --pretty="format:" "$commit" | grep . | sed "s|^|$repo_root/|"
