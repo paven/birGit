@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
-MY_PATH="`dirname \"$0\"`"
-root="${MY_PATH}/root"
-root=`$root`
-
-pushd $root > /dev/null
-git ls-files --others --exclude-standard --no-empty-directory | cat | sed "s|^|$root/|"
-popd > /dev/null
+set -e
+birgit_="$(dirname "$0")"
+repo_root="$("$birgit_/root")"
+git -C "$repo_root" ls-files --others --exclude-standard --no-empty-directory | sed "s|^|$repo_root/|"
