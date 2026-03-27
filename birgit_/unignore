@@ -1,5 +1,3 @@
 #!/usr/bin/env bash
-for i in "$@"
-do
-	git update-index --no-assume-unchanged $i
-done
+set -e
+git update-index --no-assume-unchanged "$@"
