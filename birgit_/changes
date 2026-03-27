@@ -1,13 +1,9 @@
 #!/usr/bin/env bash
-comp="HEAD"
-MY_PATH="`dirname \"$0\"`"
-if [ $1 ]; then
-	comp_hash="$($MY_PATH/hash $1)"
-	if [ $? ]; then
-		comp=$comp_hash
-	fi
+set -e
+birgit_="$(dirname "$0")"
+repo_root="$("$birgit_/root")"
+comp="${1:-HEAD}"
+if [ -n "$1" ]; then
+    comp="$("$birgit_/hash" "$1")"
 fi
-
-root="${MY_PATH}/root"
-root=`$root`
-git diff --name-only $comp | cat | sed "s|^|$root/|"
+git diff --name-only "$comp" | sed "s|^|$repo_root/|"
