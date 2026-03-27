@@ -1,27 +1,27 @@
 #!/usr/bin/env bash
-birgit_="`dirname \"$0\"`"
+set -e
 
-n=" -n10 " #Number of items to show
-graph="--graph"
-oneline="--oneline"
-decorate="--decorate"
-topo_order="--topo-order"
+n="-n10"
 
-#git configuration
-gitConf="-c color.ui=always"
-no_pager="--no-pager"
-for i in "$@"
-do
-	case $i in
-		--help)
-			echo 'Display log in pretty format, should honor standard git log arguments. with some defaults'
-			exit 0
-			;;
-		-n*)
-			n=""
-			;;
-	esac
-	args="$args $i"
+for i in "$@"; do
+    case $i in
+        --help)
+            echo "Pretty git log with graph and timestamps. Accepts standard git log arguments."
+            echo "  -n<N>  show N commits (default: 10)"
+            exit 0
+            ;;
+        -n*)
+            n=""
+            ;;
+    esac
+    args="${args} ${i}"
 done
 
-git $gitConf $no_pager log $args $graph $decorate $topo_order $n --pretty=format:'%h%Creset -%C(yellow)%dforkpoint %H %Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' | $birgit_/forkpointReplace
+# shellcheck disable=SC2086
+git -c color.ui=always --no-pager log \
+    $args \
+    --graph \
+    --decorate \
+    --topo-order \
+    $n \
+    --pretty=format:'%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
