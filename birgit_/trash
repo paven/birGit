@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
-trashMethod=$(git config birgit.trash)
-	echo trash does stash only: \"git config birgit.trash full\" to allow the dangerus stuff.
+set -e
+trash_method=$(git config birgit.trash 2>/dev/null || true)
+
+if [ "$trash_method" != "full" ]; then
+    echo 'trash: stash only. Run `git config birgit.trash full` to enable hard reset + clean.' >&2
 fi
-	git stash save trash
-if [ "$trashMethod" == "full" ]; then
-	git clean -d -f -f
-	git reset HEAD --hard
+
+git stash push -m trash
+
+if [ "$trash_method" = "full" ]; then
+    git reset --hard HEAD
+    git clean -d -f -f
 fi
